@@ -25,6 +25,6 @@ LivePhotoImagePrototype.createdCallback = function() {
 };
 
 var LivePhotoImage = document.registerElement("live-photo", {
-  prototype: LivePhotoImagePrototype,
-  extends: "img"
+  "prototype": LivePhotoImagePrototype,
+  "extends": "img"
 });
