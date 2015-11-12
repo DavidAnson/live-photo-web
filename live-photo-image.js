@@ -26,7 +26,7 @@ LivePhotoImagePrototype.createdCallback = function() {
   this.addEventListener("touchend", this.stop);
 };
 
-var LivePhotoImage = document.registerElement("live-photo", {
+var LivePhotoImage = document.registerElement("live-photo-image", {
   "prototype": LivePhotoImagePrototype,
   "extends": "img"
 });

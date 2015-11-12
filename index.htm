@@ -4,11 +4,19 @@
     <title>Live Photos Web Component Sample</title>
     <script src="webcomponents-lite.js"></script>
     <script src="live-photo-image.js"></script>
+    <script src="live-photo-element.js"></script>
     <link rel="prefetch" href="sample.gif"/>
+    <link rel="prefetch" href="sample.mov"/>
   </head>
   <body>
     <h1>Live Photos Web Component Sample</h1>
-    <p>Move the mouse over the image or touch it with your finger to bring it to life:</p>
-    <img is="live-photo" src="sample.jpg"/>
+
+    <p>Move the mouse over either image or touch one with your finger to bring it to life!</p>
+
+    <h2>live-photo-image</h2>
+    <img is="live-photo-image" src="sample.jpg"/>
+
+    <h2>live-photo-element</h2>
+    <live-photo-element src="sample.jpg"/>
   </body>
 </html>
