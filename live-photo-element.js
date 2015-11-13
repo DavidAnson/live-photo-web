@@ -21,7 +21,7 @@ LivePhotoElementPrototype.attributeChangedCallback = function(name) {
   if (name === "src") {
     var src = (this.attributes.src || {}).value;
     this.img.src = src;
-    this.video.src = src.replace(/\.[^\.]+$/, ".mov");
+    this.video.src = src.replace(/\.[^\.]+$/, ".mp4");
   }
 };
 
