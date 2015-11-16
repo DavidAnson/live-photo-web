@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Live Photos Web Component Sample</title>
+    <title>Live Photo Web Component Sample</title>
+
     <script src="webcomponents-lite.js"></script>
     <script src="live-photo-image.js"></script>
     <script src="live-photo-element.js"></script>
+
     <link rel="prefetch" href="sample.gif"/>
     <link rel="prefetch" href="sample.mp4"/>
   </head>
   <body>
-    <h1>Live Photos Web Component Sample</h1>
+    <h1>Live Photo Web Component Sample</h1>
+    <p>Move the mouse over an image or touch it with your finger to bring it to life!</p>
+    <p><a href="https://github.com/DavidAnson/live-photo-web">Visit <code>live-photo-web</code> on GitHub for more information</a></p>
 
-    <p>Move the mouse over either image or touch one with your finger to bring it to life!</p>
+    <hr/>
 
     <h2>live-photo-image</h2>
+    <p><em>Animated GIF, works everywhere, no sound</em></p>
     <img is="live-photo-image" src="sample.jpg"/>
 
+    <hr/>
+
     <h2>live-photo-element</h2>
+    <p><em>MP4 video, works many places, includes sound</em></p>
     <live-photo-element src="sample.jpg"></live-photo-element>
+    <p><em><code>live-photo-element</code> doesn't work well on iPhone because video does not play inline</em></p>
   </body>
 </html>
