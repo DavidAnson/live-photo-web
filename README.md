@@ -1,6 +1,6 @@
 # live-photo-web
 
-Apple introduced [Live Photos](http://www.apple.com/ios/photos/) with iOS 9, a
+Apple introduced [Live Photos](https://www.apple.com/ios/photos/) with iOS 9, a
 feature that automatically associates a short video with every picture that's
 taken. I was skeptical at first, wondering how relevant this would be for static
 content; and it turns out not to be all that compelling for some kinds of photos.
@@ -14,7 +14,7 @@ And so `live-photo-web` was born!
 
 ## Demo
 
-[Click here for a simple demonstration of the techniques described below.](http://dlaa.me/Samples/live-photo-web/)
+[Click here for a simple demonstration of the techniques described below.](https://dlaa.me/Samples/live-photo-web/)
 
 ## live-photo-image
 
@@ -75,9 +75,7 @@ Here's what it looks like in practice:
 
 Unfortunately, there are two drawbacks with this approach. The first is that
 `video` and `mp4` are not as universally supported as `gif`, so there are some
-browsers where things don't work smoothly (or possibly at all). Ironically,
-because [iPhone doesn't allow embedded video in Safari](https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html),
-the platform that inspired this project behaves the worst. The second drawback
+browsers where things don't work smoothly (or possibly at all). The second
 is that the format for Live Photo movies, `mov`, is not natively supported by
 all platforms (notably Windows), so it's a good idea to transcode the `mov` to
 a more popular format like `mp4`. On the plus side, transcoding is a good

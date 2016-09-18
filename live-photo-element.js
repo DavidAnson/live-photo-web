@@ -29,15 +29,20 @@ LivePhotoElementPrototype.createdCallback = function() {
   this.img = document.createElement("img");
   this.appendChild(this.img);
   this.video = document.createElement("video");
+  this.video.playsInline = true;
   this.video.loop = true;
   this.video.style.display = "none";
   this.appendChild(this.video);
 
-  this.addEventListener("mouseenter", this.start);
-  this.addEventListener("mouseleave", this.stop);
-  this.addEventListener("touchstart", this.start);
-  this.addEventListener("touchcancel", this.stop);
-  this.addEventListener("touchend", this.stop);
+  var start = this.start.bind(this);
+  var stop = this.stop.bind(this);
+  [this.img, this.video].forEach(function(element) {
+    element.addEventListener("mouseenter", start);
+    element.addEventListener("mouseleave", stop);
+    element.addEventListener("touchstart", start);
+    element.addEventListener("touchcancel", stop);
+    element.addEventListener("touchend", stop);
+  });
 
   this.attributeChangedCallback("src");
 };
