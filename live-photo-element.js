@@ -1,52 +1,57 @@
 "use strict";
 
-var LivePhotoElementPrototype = Object.create(HTMLElement.prototype);
+class LivePhotoElement extends HTMLElement {
 
-LivePhotoElementPrototype.start = function(evt) {
-  this.video.style.display = "inline";
-  this.img.style.display = "none";
-  this.video.play();
-  evt.preventDefault();
-};
-
-LivePhotoElementPrototype.stop = function(evt) {
-  this.img.style.display = "inline";
-  this.video.style.display = "none";
-  this.video.pause();
-  this.video.currentTime = 0;
-  evt.preventDefault();
-};
-
-LivePhotoElementPrototype.attributeChangedCallback = function(name) {
-  if (name === "src") {
-    var src = (this.attributes.src || {}).value;
-    this.img.src = src;
-    this.video.src = src.replace(/\.[^\.]+$/, ".mp4");
+  static get observedAttributes() {
+    return ["src"];
   }
-};
 
-LivePhotoElementPrototype.createdCallback = function() {
-  this.img = document.createElement("img");
-  this.appendChild(this.img);
-  this.video = document.createElement("video");
-  this.video.playsInline = true;
-  this.video.loop = true;
-  this.video.style.display = "none";
-  this.appendChild(this.video);
+  start(evt) {
+    this.video.style.display = "inline";
+    this.img.style.display = "none";
+    this.video.play();
+    evt.preventDefault();
+  }
 
-  var start = this.start.bind(this);
-  var stop = this.stop.bind(this);
-  [this.img, this.video].forEach(function(element) {
-    element.addEventListener("mouseenter", start);
-    element.addEventListener("mouseleave", stop);
-    element.addEventListener("touchstart", start);
-    element.addEventListener("touchcancel", stop);
-    element.addEventListener("touchend", stop);
-  });
+  stop(evt) {
+    this.img.style.display = "inline";
+    this.video.style.display = "none";
+    this.video.pause();
+    this.video.currentTime = 0;
+    evt.preventDefault();
+  }
 
-  this.attributeChangedCallback("src");
-};
+  attributeChangedCallback(name, old, value) {
+    if (name === "src") {
+      const src = value || this.attributes.src.value;
+      if (this.img && this.video) {
+        this.img.src = src;
+        this.video.src = src.replace(/\.[^\.]+$/, ".mp4");
+      }
+    }
+  }
 
-var LivePhotoElement = document.registerElement("live-photo-element", {
-  "prototype": LivePhotoElementPrototype
-});
+  connectedCallback() {
+    this.img = document.createElement("img");
+    this.appendChild(this.img);
+    this.video = document.createElement("video");
+    this.video.playsInline = true;
+    this.video.loop = true;
+    this.video.style.display = "none";
+    this.appendChild(this.video);
+
+    const start = this.start.bind(this);
+    const stop = this.stop.bind(this);
+    [this.img, this.video].forEach(function(element) {
+      element.addEventListener("mouseenter", start);
+      element.addEventListener("mouseleave", stop);
+      element.addEventListener("touchstart", start);
+      element.addEventListener("touchcancel", stop);
+      element.addEventListener("touchend", stop);
+    });
+
+    this.attributeChangedCallback("src");
+  }
+}
+
+customElements.define("live-photo-element", LivePhotoElement);
